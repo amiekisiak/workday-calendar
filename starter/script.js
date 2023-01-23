@@ -46,13 +46,11 @@ window.onload = function () {
 }
 
 // Add a clear button
-const clearBtn = document.querySelector('.clear-btn');
-clearBtn.addEventListener('click', () => {
-  localStorage.clear();
-  timeBlocks.forEach(block => {
-    block.querySelector('.time-block-description').value = '';
-  });
-});
+    
+    $("#clearBlocksBtn").click(function(event) {
+        event.preventDefault;
+        $("textArea").val("");
+        localStorage.clear();
+    });
 
 setInterval(updateTimeBlocks, 60000);
-
