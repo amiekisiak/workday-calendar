@@ -25,12 +25,12 @@ textarea {
   white-space: pre-wrap;
 }
 
-.time-block {
+.time-block-description {
   text-align: center;
   border-radius: 15px;
 }
 
-.row {
+.row{
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
@@ -68,4 +68,11 @@ textarea {
 .time-block-saveBtn :hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+}
+#clearBlocksBtn:hover {
+border-left: 1px solid black;
+border-radius: 20%;
+background-color: grey;
+
+
 }
