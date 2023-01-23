@@ -47,10 +47,10 @@ window.onload = function () {
 
 // Add a clear button
     
-    $("#clearBlocksBtn").click(function(event) {
-        event.preventDefault;
-        $("textArea").val("");
-        localStorage.clear();
-    });
-
+$("#clearBlocksBtn").click(function() {
+    console.log($("textArea"))
+    $("textArea").val("");
+    localStorage.clear();
+});
+   
 setInterval(updateTimeBlocks, 60000);
