@@ -1,55 +1,58 @@
 const currentDay = document.querySelector("#currentDay");
-const now = new Date();
-currentDay.innerHTML = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+let now = moment();
+currentDay.innerHTML = now.format("dddd, MMMM Do YYYY, h:mm:ss a");
 const timeBlocks = document.querySelectorAll('.time-block-container');
 
-//This saves the tasks to local storage when the save button is clicked
+// Save task to local storage when save button is clicked
 timeBlocks.forEach(block => {
     block.querySelector('.time-block-saveBtn').addEventListener('click', e => {
         const textValue = e.target.parentNode.querySelector('.time-block-description').value;
         const hour = block.querySelector(".hour span").textContent;
-        let hourValue = parseInt(hour.split(/[^\d]/)[0]) % 12;
-        if (hour.includes("PM")) hourValue += 12;
-        localStorage.setItem(hourValue.toString(), textValue);
+        let hourValue = moment(hour, "h:mm A").format("HH");
+        localStorage.setItem(hourValue, textValue);
     });
 });
 
-// Tasks are loadaded from local storage when page is refreshed
-window.onload = function () {
-    timeBlocks.forEach(block => {
-        const hour = block.querySelector(".hour span").textContent;
-        let hourValue = parseInt(hour.split(/[^\d]/)[0]) % 12;
-        if (hour.includes("PM")) hourValue += 12;
-        block.querySelector(".time-block-description").value = localStorage.getItem(hourValue.toString());
-    });
-    updateTimeBlocks();
-    setInterval(updateTimeBlocks, 60000);
-}
 
-// Class is added to time blocks, which is based on current time also color of blocks is updated
+// Load tasks from local storage and update color of blocks based on time
+
+
 function updateTimeBlocks() {
-    const currentHour = now.getHours();
+    now = moment();
+    currentDay.innerHTML = now.format("dddd, MMMM Do YYYY, h:mm:ss a");
     timeBlocks.forEach(block => {
         const hour = block.querySelector(".hour span").textContent;
-        let hourValue = parseInt(hour.split(/[^\d]/)[0]) % 12;
-        if (hour.includes("PM")) hourValue += 12;
+        let hourValue = moment(hour, "h:mm A").format("HH");
+        let hourMoment = moment(hourValue, "HH");
         block.classList.remove("past", "present", "future");
-        if (hourValue < currentHour) {
+        if (hourMoment.isBefore(now, 'hour')) {
             block.classList.add("past");
-        } else if (hourValue === currentHour) {
+        } else if (hourMoment.isSame(now, 'hour')) {
             block.classList.add("present");
-        } else if (hourValue > currentHour) {
+        } else if (hourMoment.isAfter(now, 'hour')) {
             block.classList.add("future");
         }
     });
 }
-//clears all tasks after clicking on the button and removes from local storage
-clearBlocksBtn.addEventListener('click', () => {
+
+
+window.onload = function () {
     timeBlocks.forEach(block => {
         const hour = block.querySelector(".hour span").textContent;
-        let hourValue = parseInt(hour.split(/[^\d]/)[0]) % 12;
-        if (hour.includes("PM")) hourValue += 12;
-        block.querySelector(".time-block-description").value = "";
-        localStorage.removeItem(hourValue.toString());
+        let hourValue = moment(hour, "h:mm A").format("HH");
+        block.querySelector(".time-block-description").value = localStorage.getItem(hourValue);
     });
+    updateTimeBlocks();
+}
+
+// Add a clear button
+const clearBtn = document.querySelector('.clear-btn');
+clearBtn.addEventListener('click', () => {
+  localStorage.clear();
+  timeBlocks.forEach(block => {
+    block.querySelector('.time-block-description').value = '';
+  });
 });
+
+setInterval(updateTimeBlocks, 60000);
+
