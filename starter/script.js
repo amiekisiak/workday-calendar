@@ -5,20 +5,16 @@ const timeBlocks = document.querySelectorAll('.time-block-container');
 
 
 
-// Load tasks from local storage when page is loaded
-window.onload = function() {
-    timeBlocks.forEach(block => {
-        const hour = parseInt(block.querySelector(".hour span").textContent);
-        block.querySelector(".time-block-description").value = localStorage.getItem(hour);
-    });
-}
+
 
 // Save task to local storage when save button is clicked
 timeBlocks.forEach(block => {
     block.querySelector('.time-block-saveBtn').addEventListener('click', e => {
         const textValue = e.target.parentNode.querySelector('.time-block-description').value;
         const hour = block.querySelector(".hour span").textContent;
-        localStorage.setItem(hour, textValue);
+        let hourValue = parseInt(hour.split(/[^\d]/)[0]) % 12;
+        if(hour.includes("PM")) hourValue += 12;
+        localStorage.setItem(hourValue.toString(), textValue);
     });
 });
 
@@ -28,10 +24,11 @@ window.onload = function() {
         const hour = block.querySelector(".hour span").textContent;
         let hourValue = parseInt(hour.split(/[^\d]/)[0]) % 12;
         if(hour.includes("PM")) hourValue += 12;
-        block.querySelector(".time-block-description").value = localStorage.getItem(hourValue);
+        block.querySelector(".time-block-description").value = localStorage.getItem(hourValue.toString());
     });
+    updateTimeBlocks();
+    setInterval(updateTimeBlocks, 60000);
 }
-
 
 
 // Add class to time blocks based on current time and update color
