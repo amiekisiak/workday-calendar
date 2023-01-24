@@ -23,6 +23,8 @@ There is also a button included to clear content of the text area and local stor
 
 ## URL of the deployed application
 
+https://amiekisiak.github.io/workday-planner/
+
 ## Screenshot
 
 ![screencapture-127-0-0-1-5555-starter-index-html-2023-01-24-10_25_59](https://user-images.githubusercontent.com/117371691/214268260-a5b5f3ca-0bf2-41b2-8651-109ba0122380.png)
