@@ -27,18 +27,22 @@ textarea {
 
 .time-block-description {
   text-align: center;
+  
+
 
 }
 
 .row {
+  display: flex;
+  height: 90px;
   white-space: pre-wrap;
-  height: 80px;
   border-top: 1px solid white;
- 
+  border-radius: 15px;
 }
 
 .hour {
   background-color: #ffffff;
+  padding-top: 10px;
   color: #000000;
   
 }

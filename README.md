@@ -3,42 +3,29 @@
 
 ## Description
 
-Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+The purpose of this assignment is to create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app is running in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
-You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
+The app:
 
-## Installation
-
-```md
-AS AN employee with a busy schedule
-I WANT to add important events to a daily planner
-SO THAT I can manage my time effectively
-```
+* Displays the current day at the top of the calender when a user opens the planner,
  
-## Usage
-
-The app should:
-
-* Display the current day at the top of the calender when a user opens the planner.
+* Presents timeblocks for standard business hours when the user scrolls down,
  
-* Present timeblocks for standard business hours when the user scrolls down.
+*  Each timeblock is color-coded based on past, present, and future when the timeblock is viewed,
  
-* Color-code each timeblock based on past, present, and future when the timeblock is viewed.
- 
-* Allow a user to enter an event when they click a timeblock
+* Allows user to enter an event when they click a timeblock,
 
-* Save the event in local storage when the save button is clicked in that timeblock.
+* Saves the event in local storage when the save button is clicked in that timeblock,
 
-* Persist events between refreshes of a page
+* Events persist between refreshes of a page.
 
-The following animation demonstrates the application functionality:
+There is also a button included to clear content of the text area and local storage.
 
-![A user clicks on slots on the color-coded calendar and edits the events.](./images/05-third-party-apis-homework-demo.gif)
-
+## URL of the deployed application
 
 ## Screenshot
 
-This homework is graded based on the following criteria: 
+![screencapture-127-0-0-1-5555-starter-index-html-2023-01-24-10_25_59](https://user-images.githubusercontent.com/117371691/214268260-a5b5f3ca-0bf2-41b2-8651-109ba0122380.png)
 
 ## License
 
