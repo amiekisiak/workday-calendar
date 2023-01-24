@@ -7,13 +7,16 @@ const timeBlocks = document.querySelectorAll('.time-block-container');
 timeBlocks.forEach(block => {
     block.querySelector('.time-block-saveBtn').addEventListener('click', e => {
         // Get the text value of the task
-        const textValue = e.target.parentNode.querySelector('.time-block-description').value;
-        // Get the hour value of the block
-        const hour = block.querySelector(".hour span").textContent;
-        // Format the hour value to HH format
-        let hourValue = moment(hour, "h:mm A").format("HH");
-        // Save the text value and hour value to local storage
-        localStorage.setItem(hourValue, textValue);
+        const textArea = e.target.parentNode.querySelector('.time-block-description');
+        if (textArea) {
+            const textValue = textArea.value;
+            // Get the hour value of the block
+            const hour = block.querySelector(".hour span").textContent;
+            // Format the hour value to HH format
+            let hourValue = moment(hour, "h:mm A").format("HH");
+            // Save the text value and hour value to local storage
+            localStorage.setItem(hourValue, textValue);
+        }
     });
 });
 
@@ -61,7 +64,7 @@ window.onload = function () {
 $("#clearBlocksBtn").click(function (event) {
     event.preventDefault;
     // Clear the text area and local storage
-    $("textArea").val("");
+    $(".time-block-description").val("");
     localStorage.clear();
 
 
